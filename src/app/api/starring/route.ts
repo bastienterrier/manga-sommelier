@@ -1,5 +1,5 @@
 import { JikanMangaDto, JikanPagedResult } from "@/app/api/types/jikan.types";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
@@ -10,21 +10,13 @@ type MangaSearchResult = {
   synopsis: string | null;
 };
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const searchParams = request.nextUrl.searchParams;
-    const query = searchParams.get("query");
+    const JIKAN_API_URL = `https://api.jikan.moe/v4/manga?order_by=popularity&sort=asc&limit=5`;
 
-    if (!query) {
-      return NextResponse.json(
-        { error: 'Le paramètre de recherche "query" est obligatoire.' },
-        { status: 400 },
-      );
-    }
+    console.log(`[API Starring] Appel de Jikan`);
 
-    const JIKAN_API_URL = `https://api.jikan.moe/v4/manga?order_by=popularity&sort=asc&limit=5&q=${encodeURIComponent(query)}`;
-
-    console.log(`[API Search] Appel de Jikan avec la query: ${query}`);
+    // TODO: refactor with Jikan Client
 
     const apiResponse = await fetch(JIKAN_API_URL, {
       next: { revalidate: 3600 },
