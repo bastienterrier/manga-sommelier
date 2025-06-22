@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +31,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-gray-200`}
       >
-        {children}
+        <header className="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50 shadow-lg shadow-indigo-500/10">
+          <div className="container mx-auto px-6 py-4">
+            <h1 className="text-3xl font-bold text-white">
+              <span className="text-indigo-400">Manga</span> Sommelier 🍷
+            </h1>
+            <p className="text-sm text-gray-400">
+              Vos prochaines lectures, choisies par une IA passionnée.
+            </p>
+          </div>
+        </header>
+
+        <main className="container mx-auto px-6 py-12">{children}</main>
       </body>
     </html>
   );
