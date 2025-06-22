@@ -1,0 +1,14 @@
+### Get suggestion
+POST http://localhost:3000/api/suggestions
+
+{
+  "reads": [
+    { "id": 2, "title": "Berserk", "rating": "LOVED" },
+    { "id": 11, "title": "Monster", "rating": "LIKED" },
+    { "id": 1, "title": "One Piece", "rating": "DISLIKED" }
+  ],
+  "preferences": {
+    "genres": ["Seinen", "Dark Fantasy"],
+    "themes": ["Psychologique", "Vengeance"]
+  }
+}
