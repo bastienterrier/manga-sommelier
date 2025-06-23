@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const JIKAN_API_URL = `https://api.jikan.moe/v4/manga?order_by=popularity&sort=asc&limit=5&q=${encodeURIComponent(query)}`;
+    const JIKAN_API_URL = `https://api.jikan.moe/v4/manga?order_by=popularity&sort=asc&limit=15&sfw&q=${encodeURIComponent(query)}`;
 
     console.log(`[API Search] Appel de Jikan avec la query: ${query}`);
 

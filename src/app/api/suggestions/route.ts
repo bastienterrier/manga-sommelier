@@ -1,4 +1,6 @@
-const mock = [
+import { SuggestionDto } from "@/app/shared/dtos/suggestion.dto";
+
+const mock: SuggestionDto[] = [
   {
     title: "Vagabond",
     synopsis:
@@ -42,7 +44,10 @@ const mock = [
     ],
   },
 ];
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 export async function POST() {
+  await delay(9000);
+
   return Response.json(mock);
 }

@@ -1,8 +1,8 @@
 "use client";
 
-import MangaSelection from "@/app/home/manga-selection/MangaSelection";
-import ThemeSelection from "@/app/home/theme-selection/ThemeSelection";
-import UserSelection from "@/app/home/user-selection/UserSelection";
+import MangaSelection from "@/app/home/MangaSelection";
+import ThemeSelection from "@/app/home/ThemeSelection";
+import UserSelection from "@/app/home/UserSelection";
 import { MangaSearchDto } from "@/app/shared/dtos/manga.dto";
 import { useEffect, useState } from "react";
 
