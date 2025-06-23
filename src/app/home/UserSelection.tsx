@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -11,9 +12,11 @@ const UserSelection: React.FC = () => {
         className="space-y-4 max-h-[60vh] overflow-y-auto pr-2"
       >
         <div className="bg-gray-700/50 p-3 rounded-lg flex items-center gap-4">
-          <img
+          <Image
             src="https://placehold.co/100x150/1f2937/ffffff?text=Berserk"
             alt="Couverture de Berserk"
+            width={100}
+            height={150}
             className="w-12 h-auto rounded"
           />
           <div className="flex-grow">
@@ -45,9 +48,11 @@ const UserSelection: React.FC = () => {
         </div>
 
         <div className="bg-gray-700/50 p-3 rounded-lg flex items-center gap-4">
-          <img
+          <Image
             src="https://placehold.co/100x150/1f2937/ffffff?text=Vagabond"
             alt="Couverture de Vagabond"
+            width={100}
+            height={150}
             className="w-12 h-auto rounded"
           />
           <div className="flex-grow">
