@@ -1,14 +1,8 @@
 import { JikanMangaDto, JikanPagedResult } from "@/app/api/types/jikan.types";
+import { MangaSearchDto } from "@/app/shared/dtos/manga.dto";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
-
-type MangaSearchResult = {
-  id: number;
-  title: string;
-  imageUrl: string;
-  synopsis: string | null;
-};
 
 export async function GET() {
   try {
@@ -35,7 +29,7 @@ export async function GET() {
 
     const jikanData: JikanPagedResult<JikanMangaDto> = await apiResponse.json();
 
-    const formattedResults: MangaSearchResult[] = jikanData.data.map(
+    const formattedResults: MangaSearchDto[] = jikanData.data.map(
       (manga: JikanMangaDto) => ({
         id: manga.mal_id,
         title: manga.title,
