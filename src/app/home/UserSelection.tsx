@@ -1,8 +1,13 @@
+import User from "@/app/shared/models/user.model";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const UserSelection: React.FC = () => {
+interface UserSelectionProps {
+  user: User;
+}
+
+const UserSelection: React.FC<UserSelectionProps> = ({ user }) => {
   return (
     <div className="bg-gray-800/50 rounded-xl p-6 sticky top-24 shadow-2xl">
       <h3 className="text-xl font-bold text-white mb-4">Votre Sélection</h3>

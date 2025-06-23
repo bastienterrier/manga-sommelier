@@ -5,11 +5,13 @@ import React from "react";
 interface MangaSelectionProps {
   mangas: MangaSearchDto[];
   onSearch: (search: string) => void;
+  onMangaSelect: (manga: MangaSearchDto) => void;
 }
 
 const MangaSelection: React.FC<MangaSelectionProps> = ({
   mangas,
   onSearch,
+  onMangaSelect,
 }) => {
   return (
     <div>
@@ -48,7 +50,11 @@ const MangaSelection: React.FC<MangaSelectionProps> = ({
 
       <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {mangas.map((manga) => (
-          <div className="manga-card cursor-pointer group" key={manga.id}>
+          <button
+            className="manga-card cursor-pointer group"
+            key={manga.id}
+            onClick={() => onMangaSelect(manga)}
+          >
             <Image
               src={
                 manga.imageUrl ??
@@ -62,7 +68,7 @@ const MangaSelection: React.FC<MangaSelectionProps> = ({
             <p className="text-center mt-2 font-medium text-sm truncate group-hover:text-indigo-300">
               {manga.title}
             </p>
-          </div>
+          </button>
         ))}
       </div>
     </div>

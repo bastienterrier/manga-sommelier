@@ -15,10 +15,10 @@ const gtoReading: UserReading = {
 
 describe("User Model", () => {
   test("addReading()", () => {
-    const cut = new User();
-
-    cut.addReading(berserkReading);
-    cut.addReading(gtoReading);
+    const cut = new User()
+      .addReading(berserkReading)
+      .addReading(berserkReading) // duplicated should be ignored
+      .addReading(gtoReading);
 
     expect(cut.readings).toHaveLength(2);
     expect(cut.readings).toContain(berserkReading);
@@ -26,12 +26,10 @@ describe("User Model", () => {
   });
 
   test("removeReading()", () => {
-    const cut = new User();
-
-    cut.addReading(berserkReading);
-    cut.addReading(gtoReading);
-
-    cut.removeReading(2);
+    const cut = new User()
+      .addReading(berserkReading)
+      .addReading(gtoReading)
+      .removeReading(2);
 
     expect(cut.readings).toHaveLength(1);
     expect(cut.readings).toContain(berserkReading);
@@ -39,11 +37,10 @@ describe("User Model", () => {
   });
 
   test("updateReadingRating()", () => {
-    const cut = new User();
-
-    cut.addReading(berserkReading);
-
-    cut.updateReadingRating(1, "DISLIKED");
+    const cut = new User()
+      .addReading(berserkReading)
+      .updateReadingRating(4, "NEUTRAL") // unknown reading should be ignored
+      .updateReadingRating(1, "DISLIKED");
 
     expect(cut.readings).toHaveLength(1);
     expect(cut.readings).toContainEqual({
