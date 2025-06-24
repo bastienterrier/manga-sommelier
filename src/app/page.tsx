@@ -11,12 +11,16 @@ const USER_KEY = "user";
 
 export default function Home() {
   const [mangas, setMangas] = useState<MangaSearchDto[]>([]);
+  const [starring, setStarring] = useState<MangaSearchDto[]>([]);
   const [user, setUser] = useState<User>(new User());
 
   useEffect(() => {
     fetch("/api/starring")
       .then((response) => response.json())
-      .then(setMangas);
+      .then((mangas) => {
+        setMangas(mangas);
+        setStarring(mangas);
+      });
 
     loadUserFromStorage();
   }, []);
@@ -49,11 +53,13 @@ export default function Home() {
   const searchManga = (query: string) => {
     const trimmedQuery = query.trim();
 
-    if (trimmedQuery.length < 3) return;
-
-    fetch(`/api/search?query=${encodeURIComponent(query)}`)
-      .then((response) => response.json())
-      .then(setMangas);
+    if (!trimmedQuery.length) {
+      setMangas(starring);
+    } else {
+      fetch(`/api/search?query=${encodeURIComponent(trimmedQuery)}`)
+        .then((response) => response.json())
+        .then(setMangas);
+    }
   };
 
   const addReading = (manga: MangaSearchDto) => {

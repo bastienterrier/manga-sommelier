@@ -1,6 +1,6 @@
 import { MangaSearchDto } from "@/app/shared/dtos/manga.dto";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 interface MangaSelectionProps {
   mangas: MangaSearchDto[];
@@ -13,6 +13,7 @@ const MangaSelection: React.FC<MangaSelectionProps> = ({
   onSearch,
   onMangaSelect,
 }) => {
+  const [query, setQuery] = useState<string>("");
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-1 flex items-center">
@@ -27,7 +28,12 @@ const MangaSelection: React.FC<MangaSelectionProps> = ({
       </p>
       <div className="relative">
         <input
-          onChange={(event) => onSearch(event.currentTarget.value)}
+          onChange={(event) => setQuery(event.currentTarget.value)}
+          onKeyUp={(event) => {
+            if (event.key === "Enter") {
+              onSearch(query);
+            }
+          }}
           type="text"
           placeholder="Rechercher un manga (ex: 'Chainsaw Man', 'Jujutsu Kaisen...)"
           className="w-full bg-gray-800 border-2 border-gray-700 rounded-lg py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
