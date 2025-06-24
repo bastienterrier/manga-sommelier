@@ -9,10 +9,15 @@ interface MangaCardProps {
 }
 
 const MangaCard: React.FC<MangaCardProps> = ({ manga, onSelect }) => {
+  const handleRatingClick = (e: React.MouseEvent, rating: ReadingRating) => {
+    e.stopPropagation();
+    onSelect(manga, rating);
+  };
+
   return (
-    <button
-      className="manga-card cursor-pointer group"
-      key={manga.id}
+    <div
+      role="button"
+      className="manga-card cursor-pointer group relative rounded-lg"
       onClick={() => onSelect(manga, "LIKED")}
     >
       <Image
@@ -24,11 +29,58 @@ const MangaCard: React.FC<MangaCardProps> = ({ manga, onSelect }) => {
         height={450}
         alt={`Couverture de ${manga.title}`}
         className="rounded-lg w-full aspect-[2/3] object-cover shadow-lg"
+        loading="lazy"
       />
-      <p className="text-center mt-2 font-medium text-sm truncate group-hover:text-indigo-300">
+
+      <p className="text-center mt-2 font-medium text-sm truncate group-hover:text-indigo-300 transition-colors">
         {manga.title}
       </p>
-    </button>
+
+      <div
+        className="
+          absolute inset-0
+          bg-black/70 backdrop-blur-sm
+          flex items-center justify-center
+          opacity-0 group-hover:opacity-90
+          transition-opacity duration-300
+          rounded-lg
+        "
+      >
+        <div className="flex gap-3">
+          <button
+            title="Noter Adoré"
+            className="text-2xl hover:scale-150 transition-transform cursor-pointer"
+            onClick={(e) => handleRatingClick(e, "LOVED")}
+          >
+            😍
+          </button>
+
+          <button
+            title="Noter Aimé"
+            className="text-2xl hover:scale-150 transition-transform cursor-pointer"
+            onClick={(e) => handleRatingClick(e, "LIKED")}
+          >
+            🙂
+          </button>
+
+          <button
+            title="Noter Neutre"
+            className="text-2xl hover:scale-150 transition-transform cursor-pointer"
+            onClick={(e) => handleRatingClick(e, "NEUTRAL")}
+          >
+            😐
+          </button>
+
+          <button
+            title="Noter Pas aimé"
+            className="text-2xl hover:scale-150 transition-transform cursor-pointer"
+            onClick={(e) => handleRatingClick(e, "DISLIKED")}
+          >
+            😕
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
