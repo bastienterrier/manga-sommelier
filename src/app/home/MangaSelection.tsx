@@ -1,11 +1,12 @@
+import MangaCard from "@/app/home/MangaCard";
 import { MangaSearchDto } from "@/app/shared/dtos/manga.dto";
-import Image from "next/image";
+import { ReadingRating } from "@/app/shared/models/user.model";
 import React, { useState } from "react";
 
 interface MangaSelectionProps {
   mangas: MangaSearchDto[];
   onSearch: (search: string) => void;
-  onMangaSelect: (manga: MangaSearchDto) => void;
+  onMangaSelect: (manga: MangaSearchDto, rating: ReadingRating) => void;
 }
 
 const MangaSelection: React.FC<MangaSelectionProps> = ({
@@ -56,25 +57,7 @@ const MangaSelection: React.FC<MangaSelectionProps> = ({
 
       <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {mangas.map((manga) => (
-          <button
-            className="manga-card cursor-pointer group"
-            key={manga.id}
-            onClick={() => onMangaSelect(manga)}
-          >
-            <Image
-              src={
-                manga.imageUrl ??
-                `https://placehold.co/300x450/1f2937/ffffff?text=${encodeURIComponent(manga.title)}`
-              }
-              width={300}
-              height={450}
-              alt={`Couverture de ${manga.title}`}
-              className="rounded-lg w-full aspect-[2/3] object-cover shadow-lg"
-            />
-            <p className="text-center mt-2 font-medium text-sm truncate group-hover:text-indigo-300">
-              {manga.title}
-            </p>
-          </button>
+          <MangaCard key={manga.id} manga={manga} onSelect={onMangaSelect} />
         ))}
       </div>
     </div>

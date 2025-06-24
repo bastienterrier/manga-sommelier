@@ -62,13 +62,13 @@ export default function Home() {
     }
   };
 
-  const addReading = (manga: MangaSearchDto) => {
+  const addReading = (manga: MangaSearchDto, rating: ReadingRating) => {
     setUser(
       user.addReading({
         id: manga.id,
         title: manga.title,
         imageUrl: manga.imageUrl,
-        rating: "LIKED",
+        rating: rating,
       }),
     );
   };
