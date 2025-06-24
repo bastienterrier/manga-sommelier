@@ -9,13 +9,37 @@ export interface UserReading {
 
 class User {
   private readonly _readings: UserReading[] = [];
+  private readonly _themes: string[] = [];
 
-  constructor(initialReadings: UserReading[] = []) {
+  constructor(
+    initialReadings: UserReading[] = [],
+    initialThemes: string[] = [],
+  ) {
     this._readings = initialReadings;
+    this._themes = initialThemes;
+  }
+
+  get themes(): string[] {
+    return this._themes;
   }
 
   get readings(): UserReading[] {
     return this._readings;
+  }
+
+  public addTheme(theme: string) {
+    if (this._themes.some((t) => t === theme)) {
+      return this;
+    }
+
+    return new User(this._readings, [...this._themes, theme]);
+  }
+
+  public removeTheme(theme: string): User {
+    return new User(
+      this._readings,
+      this._themes.filter((t) => t !== theme),
+    );
   }
 
   public addReading(reading: UserReading): User {
@@ -23,12 +47,13 @@ class User {
       return this;
     }
 
-    return new User([...this._readings, reading]);
+    return new User([...this._readings, reading], this._themes);
   }
 
   public removeReading(readingId: number): User {
     return new User(
       this._readings.filter((reading) => reading.id !== readingId),
+      this._themes,
     );
   }
 
@@ -40,6 +65,7 @@ class User {
         }
         return reading;
       }),
+      this._themes,
     );
   }
 

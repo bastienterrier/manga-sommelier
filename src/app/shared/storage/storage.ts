@@ -7,7 +7,10 @@ export const saveUser = (userToSave: User): void => {
   try {
     localStorage.setItem(
       USER_KEY,
-      JSON.stringify({ readings: userToSave.readings }),
+      JSON.stringify({
+        readings: userToSave.readings,
+        themes: userToSave.themes,
+      }),
     );
   } catch (error) {
     console.error("Error while saving user in LocalStorage", error);
@@ -20,7 +23,7 @@ export const loadUserFromStorage = (): User => {
 
     if (rawUser) {
       const parsedUser: User = JSON.parse(rawUser);
-      return new User(parsedUser.readings);
+      return new User(parsedUser.readings, parsedUser.themes);
     }
 
     return new User();

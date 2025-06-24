@@ -1,7 +1,7 @@
 "use client";
 
 import MangaSelection from "@/app/home/MangaSelection";
-import ThemeSelection from "@/app/home/ThemeSelection";
+import ThemeSelection, { THEMES } from "@/app/home/ThemeSelection";
 import UserSelection from "@/app/home/UserSelection";
 import { MangaSearchDto } from "@/app/shared/dtos/manga.dto";
 import User, { ReadingRating } from "@/app/shared/models/user.model";
@@ -59,10 +59,24 @@ export default function Home() {
     setUser(user.removeReading(id));
   };
 
+  const addTheme = (theme: string) => {
+    if (!user) return;
+    setUser(user.addTheme(theme));
+  };
+
+  const removeTheme = (theme: string) => {
+    if (!user) return;
+    setUser(user.removeTheme(theme));
+  };
+
   useEffect(() => {
     if (!user) return;
     saveUser(user);
   }, [user]);
+
+  if (!user) {
+    return <></>;
+  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -72,17 +86,20 @@ export default function Home() {
           onSearch={searchManga}
           onMangaSelect={addReading}
         />
-        <ThemeSelection />
+        <ThemeSelection
+          themes={THEMES}
+          selectedThemes={user.themes}
+          onSelected={addTheme}
+          onUnselected={removeTheme}
+        />
       </div>
 
       <div className="lg:col-span-1">
-        {user && (
-          <UserSelection
-            user={user}
-            onRatingUpdate={updateReadingRating}
-            onReadingRemove={removeReading}
-          />
-        )}
+        <UserSelection
+          user={user}
+          onRatingUpdate={updateReadingRating}
+          onReadingRemove={removeReading}
+        />
       </div>
     </div>
   );

@@ -1,6 +1,45 @@
+import Tag from "@/app/components/Tag";
 import React from "react";
 
-const ThemeSelection: React.FC = () => {
+export const THEMES: string[] = [
+  // Demographic
+  "Shōnen",
+  "Shōjo",
+  "Seinen",
+  "Josei",
+  "Kodomomuke",
+  // Genre
+  "Action / Aventure",
+  "Fantasy",
+  "Isekai",
+  "Science-Fiction",
+  "Tranche de vie (Slice of Life)",
+  "Romance",
+  "Comédie",
+  "Drame",
+  "Horreur",
+  "Mystère / Policier",
+  "Sport",
+  "Historique",
+  "Mecha",
+];
+
+interface ThemeSelectionProps {
+  themes: string[];
+  selectedThemes: string[];
+  onSelected: (theme: string) => void;
+  onUnselected: (theme: string) => void;
+}
+
+const ThemeSelection: React.FC<ThemeSelectionProps> = ({
+  themes,
+  selectedThemes,
+  onSelected,
+  onUnselected,
+}) => {
+  const isSelected = (theme: string) =>
+    !!selectedThemes.find((t) => t === theme);
+
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-1 flex items-center">
@@ -13,27 +52,17 @@ const ThemeSelection: React.FC = () => {
         Choisissez les genres ou ambiances qui vous attirent le plus.
       </p>
       <div className="flex flex-wrap gap-3 ml-11">
-        <button className="bg-gray-800 hover:bg-indigo-500 hover:text-white text-gray-300 font-medium py-2 px-4 rounded-full transition-colors text-sm">
-          Dark Fantasy
-        </button>
-        <button className="bg-gray-800 hover:bg-indigo-500 hover:text-white text-gray-300 font-medium py-2 px-4 rounded-full transition-colors text-sm">
-          Psychologique
-        </button>
-        <button className="bg-gray-800 hover:bg-indigo-500 hover:text-white text-gray-300 font-medium py-2 px-4 rounded-full transition-colors text-sm">
-          Seinen
-        </button>
-        <button className="bg-gray-800 hover:bg-indigo-500 hover:text-white text-gray-300 font-medium py-2 px-4 rounded-full transition-colors text-sm">
-          Shonen
-        </button>
-        <button className="bg-gray-800 hover:bg-indigo-500 hover:text-white text-gray-300 font-medium py-2 px-4 rounded-full transition-colors text-sm">
-          Science-Fiction
-        </button>
-        <button className="bg-gray-800 hover:bg-indigo-500 hover:text-white text-gray-300 font-medium py-2 px-4 rounded-full transition-colors text-sm">
-          Historique
-        </button>
-        <button className="bg-gray-800 hover:bg-indigo-500 hover:text-white text-gray-300 font-medium py-2 px-4 rounded-full transition-colors text-sm">
-          Tranche de vie
-        </button>
+        {themes.map((theme) => (
+          <button
+            key={theme}
+            className="cursor-pointer"
+            onClick={() =>
+              isSelected(theme) ? onUnselected(theme) : onSelected(theme)
+            }
+          >
+            <Tag selected={isSelected(theme)}>{theme}</Tag>
+          </button>
+        ))}
       </div>
     </div>
   );
