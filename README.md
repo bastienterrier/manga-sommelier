@@ -2,8 +2,11 @@
 
 Votre prochain coup de cœur manga, déniché par une Intelligence Artificielle qui analyse vos goûts uniques.
 
-[Image de Screenshot de l'application Manga Sommelier]
+**HomePage :** 
+
 ![Homepage de l'application Manga Sommelier](./docs/assets/homepage.png)
+
+**Suggestions :**
 ![Suggestions de l'application Manga Sommelier](./docs/assets/suggestions.png)
 
 ## Le Concept
