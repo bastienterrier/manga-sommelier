@@ -108,7 +108,10 @@ describe("User Model", () => {
         .addReading(gtoReading)
         .addReading(deathNoteReading)
         .addReading(narutoReading)
-        .addReading(ohRohDenReading);
+        .addReading(ohRohDenReading)
+        .addTheme("Action")
+        .addTheme("Seinen")
+        .addTheme("Fantasy");
 
       const result = cut.generateLlmPrompt();
 
@@ -116,7 +119,8 @@ describe("User Model", () => {
         .toStrictEqual(`- Les mangas que j'ai adorés sont les meilleures références. Inspire-toi fortement de : Berserk.
 \n- J'ai également apprécié les titres suivants, qui sont de bons indicateurs : Death Note, Naruto.
 \n- Point très important : je n'ai pas du tout aimé ce qui suit. Évite donc les styles similaires à : GTO.
-\n- Pour information, j'ai lu les titres suivants sans avoir d'avis particulier. Ils peuvent être ignorés s'ils ne correspondent pas aux goûts principaux : Oh-Roh-Den.`);
+\n- Pour information, j'ai lu les titres suivants sans avoir d'avis particulier. Ils peuvent être ignorés s'ils ne correspondent pas aux goûts principaux : Oh-Roh-Den.
+\n- Prend également en compte que j'apprécie les thèmes de mangas favoris suivant : Action, Seinen, Fantasy.`);
     });
   });
 });

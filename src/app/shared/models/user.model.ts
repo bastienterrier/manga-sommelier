@@ -116,6 +116,12 @@ class User {
       );
     }
 
+    if (this.themes.length > 0) {
+      promptParts.push(
+        `\n- Prend également en compte que j'apprécie les thèmes de mangas favoris suivant : ${this.themes.join(", ")}.`,
+      );
+    }
+
     return promptParts.join("\n");
   }
 }
