@@ -42,6 +42,58 @@ class User {
       }),
     );
   }
+
+  public generateLlmPrompt(): string {
+    if (!this._readings.length) {
+      throw "Impossible de générer des recommandations sans lecture.";
+    }
+
+    const loved = this._readings
+      .filter((r) => r.rating === "LOVED")
+      .map((r) => r.title);
+
+    const liked = this._readings
+      .filter((r) => r.rating === "LIKED")
+      .map((r) => r.title);
+
+    const disliked = this._readings
+      .filter((r) => r.rating === "DISLIKED")
+      .map((r) => r.title);
+
+    const neutral = this._readings
+      .filter((r) => r.rating === "NEUTRAL")
+      .map((r) => r.title);
+
+    const promptParts: string[] = [
+      "Analyse les goûts d'un lecteur pour lui proposer trois recommandations pertinentes. Prends en forte considération les préférences suivantes :",
+    ];
+
+    if (loved.length > 0) {
+      promptParts.push(
+        `\n1. Les mangas qu'il a adorés sont les meilleures références. Inspire-toi fortement de : ${loved.join(", ")}.`,
+      );
+    }
+
+    if (liked.length > 0) {
+      promptParts.push(
+        `\n2. Il a également apprécié les titres suivants, qui sont de bons indicateurs : ${liked.join(", ")}.`,
+      );
+    }
+
+    if (disliked.length > 0) {
+      promptParts.push(
+        `\n3. Point très important : il n'a pas du tout aimé ce qui suit. Évite donc les styles similaires à : ${disliked.join(", ")}.`,
+      );
+    }
+
+    if (neutral.length > 0) {
+      promptParts.push(
+        `\n4. Pour information, il a lu les titres suivants sans avoir d'avis particulier. Ils peuvent être ignorés s'ils ne correspondent pas aux goûts principaux : ${neutral.join(", ")}.`,
+      );
+    }
+
+    return promptParts.join("\n");
+  }
 }
 
 export default User;
