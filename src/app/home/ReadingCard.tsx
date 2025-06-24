@@ -5,11 +5,13 @@ import React from "react";
 interface ReadingSectionCardProps {
   reading: UserReading;
   onRatingUpdate: (rating: ReadingRating) => void;
+  onRemove: () => void;
 }
 
 const ReadingCard: React.FC<ReadingSectionCardProps> = ({
   reading,
   onRatingUpdate,
+  onRemove,
 }) => {
   const getRatingClass = (rating: ReadingRating): string => {
     return rating === reading.rating
@@ -62,7 +64,11 @@ const ReadingCard: React.FC<ReadingSectionCardProps> = ({
           </button>
         </div>
       </div>
-      <button title="Retirer" className="text-gray-500 hover:text-red-400">
+      <button
+        title="Retirer"
+        className="text-gray-500 hover:text-red-400"
+        onClick={onRemove}
+      >
         &times;
       </button>
     </div>

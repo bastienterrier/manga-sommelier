@@ -77,6 +77,10 @@ export default function Home() {
     setUser(user.updateReadingRating(id, rating));
   };
 
+  const removeReading = (id: number) => {
+    setUser(user.removeReading(id));
+  };
+
   useEffect(() => {
     saveUserInStore(user);
   }, [user]);
@@ -93,7 +97,11 @@ export default function Home() {
       </div>
 
       <div className="lg:col-span-1">
-        <UserSelection user={user} onRatingUpdate={updateReadingRating} />
+        <UserSelection
+          user={user}
+          onRatingUpdate={updateReadingRating}
+          onReadingRemove={removeReading}
+        />
       </div>
     </div>
   );

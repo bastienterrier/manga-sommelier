@@ -6,11 +6,13 @@ import React from "react";
 interface UserSelectionProps {
   user: User;
   onRatingUpdate: (id: number, ration: ReadingRating) => void;
+  onReadingRemove: (id: number) => void;
 }
 
 const UserSelection: React.FC<UserSelectionProps> = ({
   user,
   onRatingUpdate,
+  onReadingRemove,
 }) => {
   return (
     <div className="bg-gray-800/50 rounded-xl p-6 sticky top-24 shadow-2xl">
@@ -29,6 +31,7 @@ const UserSelection: React.FC<UserSelectionProps> = ({
             key={reading.id}
             reading={reading}
             onRatingUpdate={(rating) => onRatingUpdate(reading.id, rating)}
+            onRemove={() => onReadingRemove(reading.id)}
           />
         ))}
       </div>
