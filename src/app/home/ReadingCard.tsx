@@ -36,28 +36,28 @@ const ReadingCard: React.FC<ReadingSectionCardProps> = ({
         <div className="flex gap-2 mt-1">
           <button
             title="Adoré"
-            className={`bg-green-500 text-white rounded px-2 py-0.5 text-xs ${getRatingClass("LOVED")}`}
+            className={`bg-green-500 text-white rounded px-2 py-0.5 text-xs cursor-pointer ${getRatingClass("LOVED")}`}
             onClick={() => onRatingUpdate("LOVED")}
           >
             😍
           </button>
           <button
             title="Aimé"
-            className={`bg-sky-500 text-white rounded px-2 py-0.5 text-xs ${getRatingClass("LIKED")}`}
+            className={`bg-sky-500 text-white rounded px-2 py-0.5 text-xs cursor-pointer ${getRatingClass("LIKED")}`}
             onClick={() => onRatingUpdate("LIKED")}
           >
             🙂
           </button>
           <button
             title="Neutre"
-            className={`bg-gray-500 text-white rounded px-2 py-0.5 text-xs ${getRatingClass("NEUTRAL")}`}
+            className={`bg-gray-500 text-white rounded px-2 py-0.5 text-xs cursor-pointer ${getRatingClass("NEUTRAL")}`}
             onClick={() => onRatingUpdate("NEUTRAL")}
           >
             😐
           </button>
           <button
             title="Pas aimé"
-            className={`bg-red-500 text-white rounded px-2 py-0.5 text-xs ${getRatingClass("DISLIKED")}`}
+            className={`bg-red-500 text-white rounded px-2 py-0.5 text-xs cursor-pointer ${getRatingClass("DISLIKED")}`}
             onClick={() => onRatingUpdate("DISLIKED")}
           >
             😕
@@ -66,7 +66,7 @@ const ReadingCard: React.FC<ReadingSectionCardProps> = ({
       </div>
       <button
         title="Retirer"
-        className="text-gray-500 hover:text-red-400"
+        className="text-gray-500 hover:text-red-400 cursor-pointer"
         onClick={onRemove}
       >
         &times;
