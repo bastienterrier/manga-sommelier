@@ -18,7 +18,7 @@ export async function GET() {
 
     if (!apiResponse.ok) {
       console.error(
-        `[API Search] Erreur de l'API Jikan: ${apiResponse.status}`,
+        `[API Starring] Erreur de l'API Jikan: ${apiResponse.status}`,
       );
 
       return NextResponse.json(
@@ -42,7 +42,7 @@ export async function GET() {
 
     return NextResponse.json(formattedResults);
   } catch (error) {
-    console.error("[API Search] Erreur interne du serveur:", error);
+    console.error("[API Starring] Erreur interne du serveur:", error);
     return NextResponse.json(
       { error: "Une erreur interne est survenue sur le serveur." },
       { status: 500 },

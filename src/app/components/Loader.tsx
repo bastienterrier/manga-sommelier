@@ -150,7 +150,7 @@ const Loader: React.FC<LoaderProps> = ({ messages = [], heading }) => {
                 style={{
                   animationName: "fade-text",
                   animationDuration: `${totalAnimationTime}s`,
-                  animationDelay: `${index * 4}s`,
+                  animationDelay: `${index * 2}s`,
                   animationIterationCount: "infinite",
                   animationTimingFunction: "linear",
                 }}

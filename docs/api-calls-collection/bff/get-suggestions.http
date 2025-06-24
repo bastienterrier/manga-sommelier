@@ -1,4 +1,4 @@
-### Get suggestion
+### Get suggestions
 POST http://localhost:3000/api/suggestions
 
 {

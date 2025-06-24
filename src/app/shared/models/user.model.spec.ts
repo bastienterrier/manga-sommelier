@@ -87,11 +87,10 @@ describe("User Model", () => {
       const result = cut.generateLlmPrompt();
 
       expect(result)
-        .toStrictEqual(`Analyse les goûts d'un lecteur pour lui proposer trois recommandations pertinentes. Prends en forte considération les préférences suivantes :
-\n1. Les mangas qu'il a adorés sont les meilleures références. Inspire-toi fortement de : Berserk.
-\n2. Il a également apprécié les titres suivants, qui sont de bons indicateurs : Death Note, Naruto.
-\n3. Point très important : il n'a pas du tout aimé ce qui suit. Évite donc les styles similaires à : GTO.
-\n4. Pour information, il a lu les titres suivants sans avoir d'avis particulier. Ils peuvent être ignorés s'ils ne correspondent pas aux goûts principaux : Oh-Roh-Den.`);
+        .toStrictEqual(`1. Les mangas que j'ai adorés sont les meilleures références. Inspire-toi fortement de : Berserk.
+\n2. J'ai également apprécié les titres suivants, qui sont de bons indicateurs : Death Note, Naruto.
+\n3. Point très important : je n'ai pas du tout aimé ce qui suit. Évite donc les styles similaires à : GTO.
+\n4. Pour information, j'ai lu les titres suivants sans avoir d'avis particulier. Ils peuvent être ignorés s'ils ne correspondent pas aux goûts principaux : Oh-Roh-Den.`);
     });
   });
 });

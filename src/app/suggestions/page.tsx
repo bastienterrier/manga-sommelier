@@ -2,20 +2,36 @@
 
 import Loader from "@/app/components/Loader";
 import { SuggestionDto } from "@/app/shared/dtos/suggestion.dto";
+import User from "@/app/shared/models/user.model";
+import { loadUserFromStorage } from "@/app/shared/storage/storage";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Suggestions() {
   const [suggestions, setSuggestions] = useState<SuggestionDto[]>([]);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    fetch("/api/suggestions", {
-      method: "POST",
-    })
-      .then((response) => response.json())
-      .then(setSuggestions);
+    setUser(loadUserFromStorage());
   }, []);
+
+  useEffect(() => {
+    if (!user) return;
+
+    try {
+      fetch("/api/suggestions", {
+        method: "POST",
+        body: JSON.stringify({
+          prompt: user.generateLlmPrompt(),
+        }),
+      })
+        .then((response) => response.json())
+        .then(setSuggestions);
+    } catch (error) {
+      console.error("Cannot generate suggestion", error);
+    }
+  }, [user]);
 
   if (!suggestions.length) {
     return (

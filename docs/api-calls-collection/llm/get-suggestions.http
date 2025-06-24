@@ -1,0 +1,8 @@
+POST https://dc6b-2a02-8434-6300-d401-28d6-dfcc-733e-5bbf.ngrok-free.app/api/generate
+content-type: application/json
+
+{
+  "model": "manga-sommelier",
+  "prompt": "Analyse les goûts d'un lecteur pour lui proposer trois recommandations pertinentes. Prends en forte considération les préférences suivantes : 1. Les mangas qu'il a adorés sont les meilleures références. Inspire-toi fortement de : Berserk. 2. Il a également apprécié les titres suivants, qui sont de bons indicateurs : Death Note, Naruto. 3. Point très important : il n'a pas du tout aimé ce qui suit. Évite donc les styles similaires à : GTO. 4. Pour information, il a lu les titres suivants sans avoir d'avis particulier. Ils peuvent être ignorés s'ils ne correspondent pas aux goûts principaux : Oh-Roh-Den.",
+  "stream": false
+}
