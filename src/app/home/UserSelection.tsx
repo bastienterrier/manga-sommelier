@@ -15,7 +15,7 @@ const UserSelection: React.FC<UserSelectionProps> = ({
   return (
     <div className="bg-gray-800/50 rounded-xl p-6 sticky top-24 shadow-2xl">
       <h3 className="text-xl font-bold text-white mb-4">Votre Sélection</h3>
-
+      <p className="text-gray-400 mb-4">Donnez votre avis sur vos lectures.</p>
       <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
         {!user.readings.length && (
           <div className="text-center py-8 text-gray-500">
