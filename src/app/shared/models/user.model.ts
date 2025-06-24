@@ -68,25 +68,25 @@ class User {
 
     if (loved.length > 0) {
       promptParts.push(
-        `1. Les mangas que j'ai adorés sont les meilleures références. Inspire-toi fortement de : ${loved.join(", ")}.`,
+        `- Les mangas que j'ai adorés sont les meilleures références. Inspire-toi fortement de : ${loved.join(", ")}.`,
       );
     }
 
     if (liked.length > 0) {
       promptParts.push(
-        `\n2. J'ai également apprécié les titres suivants, qui sont de bons indicateurs : ${liked.join(", ")}.`,
+        `\n- J'ai également apprécié les titres suivants, qui sont de bons indicateurs : ${liked.join(", ")}.`,
       );
     }
 
     if (disliked.length > 0) {
       promptParts.push(
-        `\n3. Point très important : je n'ai pas du tout aimé ce qui suit. Évite donc les styles similaires à : ${disliked.join(", ")}.`,
+        `\n- Point très important : je n'ai pas du tout aimé ce qui suit. Évite donc les styles similaires à : ${disliked.join(", ")}.`,
       );
     }
 
     if (neutral.length > 0) {
       promptParts.push(
-        `\n4. Pour information, j'ai lu les titres suivants sans avoir d'avis particulier. Ils peuvent être ignorés s'ils ne correspondent pas aux goûts principaux : ${neutral.join(", ")}.`,
+        `\n- Pour information, j'ai lu les titres suivants sans avoir d'avis particulier. Ils peuvent être ignorés s'ils ne correspondent pas aux goûts principaux : ${neutral.join(", ")}.`,
       );
     }
 

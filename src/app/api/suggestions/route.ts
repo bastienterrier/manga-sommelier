@@ -7,6 +7,8 @@ interface LlmApiResult {
 export async function POST(request: NextRequest) {
   const { prompt } = await request.json();
 
+  console.log(prompt);
+
   if (!prompt) {
     return NextResponse.json(
       { error: "Prompt field is required" },
@@ -39,6 +41,8 @@ export async function POST(request: NextRequest) {
     }
 
     const { response }: LlmApiResult = await apiResponse.json();
+
+    console.log(response);
 
     return NextResponse.json(JSON.parse(response));
   } catch (error) {

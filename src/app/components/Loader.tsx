@@ -89,7 +89,8 @@ interface LoaderProps {
 }
 
 const Loader: React.FC<LoaderProps> = ({ messages = [], heading }) => {
-  const totalAnimationTime = messages.length * 2; // 2 seconds per message
+  const messageDuration = 3;
+  const totalAnimationTime = messages.length * messageDuration;
 
   return (
     <>
@@ -150,7 +151,7 @@ const Loader: React.FC<LoaderProps> = ({ messages = [], heading }) => {
                 style={{
                   animationName: "fade-text",
                   animationDuration: `${totalAnimationTime}s`,
-                  animationDelay: `${index * 2}s`,
+                  animationDelay: `${index * messageDuration}s`,
                   animationIterationCount: "infinite",
                   animationTimingFunction: "linear",
                 }}

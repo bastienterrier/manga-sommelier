@@ -51,10 +51,10 @@ export default function Suggestions() {
     <>
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-white">
-          Vos 3 pépites à découvrir
+          Vos 5 pépites à découvrir
         </h2>
         <p className="text-lg text-gray-400 mt-2">
-          Cliquez sur une couverture pour afficher les détails.
+          Basé sur vos précédentes lectures.
         </p>
       </div>
       <div className="space-y-8 max-w-4xl mx-auto">
