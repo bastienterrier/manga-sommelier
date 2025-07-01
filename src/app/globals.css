@@ -25,7 +25,6 @@ body {
   font-family: 'Poppins', sans-serif
 }
 
-/* Style pour la barre de défilement */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -43,7 +42,6 @@ body {
   background: #6366f1;
 }
 
-/* Classe pour un effet de surbrillance sur les cartes */
 .manga-card:hover {
   transform: translateY(-5px) scale(1.03);
   box-shadow: 0 10px 20px rgba(79, 70, 229, 0.5);

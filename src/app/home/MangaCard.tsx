@@ -17,8 +17,14 @@ const MangaCard: React.FC<MangaCardProps> = ({ manga, onSelect }) => {
   return (
     <div
       role="button"
+      tabIndex={0}
       className="manga-card cursor-pointer group relative rounded-lg"
       onClick={() => onSelect(manga, "LIKED")}
+      onKeyUp={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          onSelect(manga, "LIKED");
+        }
+      }}
     >
       <Image
         src={
@@ -48,6 +54,7 @@ const MangaCard: React.FC<MangaCardProps> = ({ manga, onSelect }) => {
       >
         <div className="flex gap-3">
           <button
+            tabIndex={-1}
             title="Noter Adoré"
             className="text-2xl hover:scale-150 transition-transform cursor-pointer"
             onClick={(e) => handleRatingClick(e, "LOVED")}
@@ -56,6 +63,7 @@ const MangaCard: React.FC<MangaCardProps> = ({ manga, onSelect }) => {
           </button>
 
           <button
+            tabIndex={-1}
             title="Noter Aimé"
             className="text-2xl hover:scale-150 transition-transform cursor-pointer"
             onClick={(e) => handleRatingClick(e, "LIKED")}
@@ -64,6 +72,7 @@ const MangaCard: React.FC<MangaCardProps> = ({ manga, onSelect }) => {
           </button>
 
           <button
+            tabIndex={-1}
             title="Noter Neutre"
             className="text-2xl hover:scale-150 transition-transform cursor-pointer"
             onClick={(e) => handleRatingClick(e, "NEUTRAL")}
@@ -72,6 +81,7 @@ const MangaCard: React.FC<MangaCardProps> = ({ manga, onSelect }) => {
           </button>
 
           <button
+            tabIndex={-1}
             title="Noter Pas aimé"
             className="text-2xl hover:scale-150 transition-transform cursor-pointer"
             onClick={(e) => handleRatingClick(e, "DISLIKED")}

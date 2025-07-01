@@ -1,0 +1,2 @@
+### GET manga recommandations
+GET https://api.jikan.moe/v4/recommendations/manga?page=2

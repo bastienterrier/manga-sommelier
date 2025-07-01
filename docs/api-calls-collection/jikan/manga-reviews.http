@@ -1,0 +1,2 @@
+### GET manga reviews
+GET https://api.jikan.moe/v4/reviews/manga?page=1&spoiler=true

@@ -1,2 +1,2 @@
 ### Search manga
-GET https://api.jikan.moe/v4/manga?order_by=popularity&sort=asc&limit=5&q=One%20Piece
+GET https://api.jikan.moe/v4/manga?order_by=popularity&sort=asc&limit=25&q=Odin%20no%20Shuuzoku
